@@ -1,0 +1,11 @@
+import requests
+from bs4 import BeautifulSoup
+ 
+url = 'https://www.flipkart.com/'
+the_word = 'Electronics'
+r = requests.get(url, allow_redirects=False)
+soup = BeautifulSoup(r.content, 'html.parser')
+words = soup.find(text=lambda text: text and the_word in text)
+print(words)
+count =  len(words)
+print('\nUrl: {}\ncontains {} occurrences of word: {}'.format(url, count, the_word))
